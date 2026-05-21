@@ -32,6 +32,8 @@ CHANGELOG.md                   - historia wersji
 
 Skille sa **composable**: scope-change-controller karmi risk-and-issues-manager (zmiana scope = nowe ryzyko), risk-and-issues-manager sygnalizuje status-report-drafter (RAG sprawy moze sie zmienic).
 
+**Composability z [matematic-contract-review-pl](https://github.com/matematicsolutions/matematic-contract-review-pl)**: jezeli skill contract-review-pl zwroci czerwone flagi w portfelu umow klienta (np. NDA bez wylaczen, prawo USA w kontrakcie dostawczym), risk-and-issues-manager-pl moze je przejac jako nowe ryzyka sprawy w rejestrze RAID. Dwa skille ortogonalne tematycznie (portfolio spraw vs portfolio umow), composable workflow.
+
 ## Build i test
 
 Repo nie ma kompilacji - to skille Markdown dla Claude Code i kompatybilnych. "Testem" jest przepuszczenie skill przez **zanonimizowana sprawe testowa** z [examples/](./examples/) i wizualna walidacja outputu `.docx`.
