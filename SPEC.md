@@ -1,8 +1,8 @@
 # SPEC.md - specyfikacja MVP lpm-pl
 
-**Wersja**: 0.1.0-alpha
+**Wersja**: 0.2.0-alpha
 **Data**: 2026-05-21
-**Zakres**: 3 skille (status / scope / risk), w tym dokumencie szczegolowo opisany skill #1.
+**Zakres**: 3 skille MVP - wszystkie z pelnymi SKILL.md + templates + examples.
 
 ---
 
@@ -85,48 +85,57 @@ Skill aktualizuje ten plik PO kazdym wygenerowanym raporcie - dopisuje 1-2 linie
 
 ---
 
-## Skill #2 - scope-change-controller-pl (faza 2, po walidacji #1)
+## Skill #2 - scope-change-controller-pl
 
-Skrocony spec - rozbudujemy po walidacji #1.
+**Status**: LIVE w v0.2.0-alpha. Pelen spec: [skills/scope-change-controller-pl/SKILL.md](skills/scope-change-controller-pl/SKILL.md).
 
-- **Cel**: wykryc scope creep w korespondencji, zaproponowac wniosek o zmiane zakresu (do klienta) albo notatke wewnetrzna "to bylo w pierwotnej ofercie".
+Sygnatura w skrocie:
+
+- **Cel**: wykryc scope creep w korespondencji, klasyfikowac jako (w zakresie / poza / niejasne), generowac wniosek o rozszerzenie albo notatke wewnetrzna.
 - **Input**: korespondencja z klientem + pierwotna oferta/umowa.
-- **Output**: .docx "Wniosek o zmiane zakresu sprawy [X]" LUB notatka wewnetrzna.
+- **Output**: jeden z trzech: notatka wewnetrzna .md / wniosek do klienta .docx / notatka decyzyjna dla wspolnika .md.
+- **Cross-skill**: czyta od status-report-drafter-pl, pisze do risk-and-issues-manager-pl (kazda zmiana scope = nowe ryzyko).
 
-## Skill #3 - risk-and-issues-manager-pl (faza 2)
+## Skill #3 - risk-and-issues-manager-pl
 
-- **Cel**: rejestr ryzyk, zalozen, problemow i decyzji per sprawa.
-- **Input**: korespondencja + status raporty historyczne.
-- **Output**: .xlsx rejestr (RAID log) + draft mailowy do eskalacji.
+**Status**: LIVE w v0.2.0-alpha. Pelen spec: [skills/risk-and-issues-manager-pl/SKILL.md](skills/risk-and-issues-manager-pl/SKILL.md).
+
+Sygnatura w skrocie:
+
+- **Cel**: rejestr RAID (Ryzyka / Zalozenia / Problemy / Decyzje) per sprawa, eskalacja gdy RAG Czerwony.
+- **Input**: korespondencja + status raporty historyczne + ewentualnie istniejacy RAID.
+- **Output**: .xlsx rejestr RAID (4 arkusze) + opcjonalnie draft eskalacji .md.
+- **Cross-skill**: czyta od status-report-drafter-pl i scope-change-controller-pl, pisze do status-report-drafter-pl (sygnal o zmianie RAG).
 
 ---
 
 ## Plan implementacji
 
-### Faza 0 (DZISIAJ, 2026-05-21)
+### Faza 0 (2026-05-21, zamknieta)
 - [x] README.md
 - [x] LICENSE (Apache 2.0)
 - [x] CONSTITUTION.md v1.0.0
-- [x] SPEC.md v0.1.0-alpha (ten plik)
-- [ ] CHANGELOG.md
-- [ ] skills/status-report-drafter-pl/SKILL.md
-- [ ] skills/status-report-drafter-pl/templates/status_report_template.md
-- [ ] examples/sample_status_report.md (zanonimizowany przyklad)
-- [ ] docs/polskie-realia.md (notatki o roznicach vs common-law LPM)
+- [x] SPEC.md (ten plik)
+- [x] CHANGELOG.md
+- [x] skills/status-report-drafter-pl/ (SKILL + template + example)
+- [x] skills/scope-change-controller-pl/ (SKILL + template + example)
+- [x] skills/risk-and-issues-manager-pl/ (SKILL + template + example)
+- [x] docs/polskie-realia.md (notatki o roznicach vs common-law LPM)
 
-### Faza 1 (najblizsze 7-10 dni)
-- [ ] Walidacja status-report-drafter-pl na zanonimizowanej sprawie z vault Wieslawa.
+### Faza 1 (najblizsze 7-14 dni)
 - [ ] marko-pl + humanizer-pl audit caly content.
 - [ ] legal-ai-plugin-governance audit (RODO, tajemnica zawodowa).
 - [ ] Repo push: `matematicsolutions/lpm-pl` public.
 - [ ] Aktualnosc na matematic.co + post LI (linkedin-voice-wieslaw-mazur).
+- [ ] Walidacja na 1-2 zanonimizowanych sprawach z vault Wieslawa.
 
-### Faza 2 (po walidacji #1, ~2 tygodnie)
-- [ ] Skille #2 i #3 (scope + risk) - pelne SKILL.md, templates, examples.
-- [ ] Composability test (#1 czyta od #3).
-- [ ] v0.2.0-beta release.
+### Faza 2 (po walidacji, ~3-6 tygodni)
+- [ ] Refresh skilli po feedbacku.
+- [ ] Generic brand template .docx (zamiast markdown placeholder).
+- [ ] Onboarding workflow dla nowej kancelarii.
 
-### Faza 3 (post-MVP, otwarte)
-- [ ] Pozostale 13 skilli z upstream - selekcja co ma sens pod polskie realia.
+### Faza 3 (post-validacja, ~2-3 miesiace)
+- [ ] Pozostale skille z upstream - selekcja co ma sens pod polskie realia (`timeline-generator-pl`, `daily-briefing-pl`, `document-approval-tracker-pl`).
 - [ ] Integracja z Patron (opcjonalna konsumpcja).
+- [ ] Integracja z LEX Kancelaria / Mecenas IT / Comarch IBARD.
 - [ ] M365 / SharePoint connector (opcjonalny, RODO-flag).

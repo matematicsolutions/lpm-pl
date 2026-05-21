@@ -10,15 +10,17 @@ Otwarty zestaw skilli AI do zarzadzania portfelem spraw w polskiej kancelarii. C
 - Legal Project Manager (jezeli kancelaria ma) - ale wiekszosc polskich kancelarii nie ma, wiec skille mowia do partnera lub paralegala.
 - Dyrektor operacyjny / Office Manager pilnujacy budzetow i scope creep.
 
-## Co jest w MVP (faza 1)
+## Co jest w MVP (v0.2.0-alpha)
 
 Trzy skille pilotazowe pokrywajace najwiekszy bol operacyjny:
 
 1. **status-report-drafter-pl** - tworzy cotygodniowy/comiesieczny status raport sprawy z surowych maili, notatek, korespondencji. Output: .docx z naglowkiem kancelarii, ocena RAG (Czerwony/Bursztynowy/Zielony), eskalacje, luki.
-2. **scope-change-controller-pl** *(faza 2)* - wykrywa scope creep w korespondencji z klientem, generuje wniosek o zmiane zakresu albo notatke "to bylo w pierwotnej ofercie".
-3. **risk-and-issues-manager-pl** *(faza 2)* - rejestr ryzyk, zalozen, problemow i decyzji per sprawa. Wyciaga ukryte ryzyka z mailowych watkow.
+2. **scope-change-controller-pl** - wykrywa scope creep w korespondencji z klientem, klasyfikuje zadania (w zakresie / poza / niejasne), generuje wniosek o rozszerzenie zakresu albo notatke wewnetrzna.
+3. **risk-and-issues-manager-pl** - prowadzi rejestr RAID (Ryzyka / Zalozenia / Problemy / Decyzje) per sprawa. Wyciaga ukryte ryzyka z mailowych watkow, eskaluje gdy RAG Czerwony.
 
-W tej wersji repo jest tylko skill #1. #2 i #3 dolacza po walidacji #1 na zywej sprawie.
+Skille sa composable: scope-change-controller karmi risk-and-issues-manager (zmiana scope = nowe ryzyko), risk-and-issues-manager sygnalizuje status-report-drafter (RAG sprawy moze sie zmienic).
+
+Pelny przyklady output w [examples/](examples/).
 
 ## Instalacja (Claude Code)
 
@@ -54,4 +56,11 @@ Apache 2.0 - patrz [LICENSE](LICENSE). Mozesz wziac, zmienic, sprzedawac wdrozen
 
 ## Status
 
-`v0.1.0-alpha` - przed walidacja na zywej sprawie. Nie uzywaj produkcyjnie zanim nie sprawdzisz na zanonimizowanej sprawie testowej.
+`v0.2.0-alpha` - trzy skille MVP. Przed walidacja na zywej sprawie. Nie uzywaj produkcyjnie zanim nie sprawdzisz na zanonimizowanej sprawie testowej.
+
+## Roadmap
+
+- **v0.3** - integracja z Patron (opcjonalna konsumpcja skilli), refresh templates po feedbacku z 1-2 wdrozen.
+- **v0.4** - dodatkowe skille z upstream (selektywnie): `timeline-generator-pl`, `daily-briefing-pl`, `document-approval-tracker-pl`.
+- **v0.5** - integracja z LEX Kancelaria / Mecenas IT / Comarch IBARD (przez ich API jezeli udostepnia).
+- **v1.0** - po pierwszych 5 wdrozeniach produkcyjnych w polskich kancelariach.

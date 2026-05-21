@@ -4,6 +4,27 @@ Wszystkie istotne zmiany w projekcie lpm-pl. Format: [Keep a Changelog](https://
 
 ## [Unreleased]
 
+## [0.2.0-alpha] - 2026-05-21
+
+### Added
+
+- skills/scope-change-controller-pl/SKILL.md v0.1.0 - skill #2 MVP. Trzy klasy zadania (w zakresie / poza / niejasne), trzy outputy (notatka wewnetrzna / wniosek do klienta / decyzja wspolnika). Polskie realia: art. 16 KEA, konflikt interesow, brak AFA.
+- skills/scope-change-controller-pl/templates/scope_change_request_template.md - szablon wniosku o rozszerzenie zakresu.
+- skills/risk-and-issues-manager-pl/SKILL.md v0.1.0 - skill #3 MVP. RAID register (Risks / Assumptions / Issues / Decisions), dwuwymiarowa skala oceny (prawd. x wplyw), 11 typowych polskich ryzyk kancelaryjnych.
+- skills/risk-and-issues-manager-pl/templates/raid_register_template.md - szablon rejestru RAID.
+- examples/sample_scope_change_request.md - zanonimizowany przyklad wniosku o rozszerzenie zakresu.
+- examples/sample_raid_register.md - zanonimizowany przyklad rejestru RAID.
+
+### Changed
+
+- README.md - aktualizacja "Co jest w MVP" - 3 skille aktywne (nie 1 + 2 placeholder), opis composability.
+- README.md - dodanie roadmap (v0.3 - v1.0).
+
+### Architecture
+
+- Composability skilli: scope-change-controller -> risk-and-issues-manager (zmiana scope = nowe ryzyko); risk-and-issues-manager -> status-report-drafter (RAG sprawy moze sie zmienic).
+- Cross-skill handoff points zdefiniowane explicite w sekcji 6 kazdego SKILL.md.
+
 ## [0.1.0-alpha] - 2026-05-21
 
 ### Added
