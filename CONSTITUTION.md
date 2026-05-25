@@ -77,14 +77,14 @@ Upstream zapowiada przejscie na AGPL-3.0 w przyszlych wersjach. lpm-pl pozostaje
 
 1. **Licencja**: zgodnie z Art. 7. Nowe zalezności tylko permissive (MIT/Apache/BSD/CC BY).
 2. **Anty-OS**: zero ToS bypass, zero scraping uslug niemajacych zgody, zero "ukrytego" transferu danych klienta.
-3. **Jakosc**: kazdy skill ma testowy przypadek na zanonimizowanej sprawie + przejscie marko-pl + humanizer-pl.
+3. **Jakosc**: kazdy skill ma testowy przypadek na zanonimizowanej sprawie + przejscie wewnetrznego pipeline QA maintainerow (korekta PL, czytelnosc, brak slop-wzorcow).
 4. **Strategia**: skill rozwiazuje realny bol polskiej kancelarii. Jezeli wymaga 3 SaaS subskrypcji za 400 USD/mc - odrzucamy.
 
 ## Roles
 
 - **Wlasciciel produktu**: Wieslaw Mazur (MateMatic) - decyzje strategiczne, ratyfikacja Konstytucji.
 - **Maintainer**: zespol MateMatic - PR review, release, dokumentacja.
-- **Reviewer tresci**: marko-pl (rygor zarzutow) + humanizer-pl (anty-AI-slop) przed kazdym mergem.
+- **Reviewer tresci**: wewnetrzny pipeline QA maintainerow MateMatic (rygor zarzutow + anty-slop dla polszczyzny) przed kazdym mergem.
 - **Walidator** prawny: licencjonowany prawnik wskazany przez klienta - kazda kancelaria ratyfikuje skill przed uzyciem produkcyjnym.
 
 ## Antygoals (czego NIE robimy)

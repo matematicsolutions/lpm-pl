@@ -123,7 +123,7 @@ Sygnatura w skrocie:
 - [x] docs/polskie-realia.md (notatki o roznicach vs common-law LPM)
 
 ### Faza 1 (najblizsze 7-14 dni)
-- [ ] marko-pl + humanizer-pl audit caly content.
+- [ ] Wewnetrzny pipeline QA maintainerow audit caly content (korekta PL + anty-slop).
 - [ ] legal-ai-plugin-governance audit (RODO, tajemnica zawodowa).
 - [ ] Repo push: `matematicsolutions/lpm-pl` public.
 - [ ] Aktualnosc na matematic.co + post LI (linkedin-voice-wieslaw-mazur).
