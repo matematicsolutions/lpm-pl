@@ -55,14 +55,14 @@ Skille mowia jezykiem polskiej kancelarii (wspolnik / radca / adwokat / aplikant
 
 - **RODO** + **ustawy zawodowe** (Ustawa Prawo o adwokaturze art. 6, Ustawa o radcach prawnych art. 3) = tajemnica zawodowa absolutna.
 - **Tajemnica obronna** w sprawach karnych - jeszcze silniejsza.
-- Transfer danych poza EOG (np. Microsoft 365, Google Workspace, US AI APIs) wymaga DPA + ocena adekwatnosci (DPF Data Privacy Framework od 2023-07-10, podtrzymany 2025-09-03 - patrz [[reference_ai_act_dpf_fakty_2026-05]]).
+- Transfer danych poza EOG (np. Microsoft 365, Google Workspace, US AI APIs) wymaga DPA + ocena adekwatnosci (DPF Data Privacy Framework od 2023-07-10, podtrzymany 2025-09-03 - patrz fakty DPF i AI Act na 2026-05).
 - AI Act od 2026-08-02 (general-purpose AI obowiazki) - wymaga oceny ryzyka.
 
 ### Implementacja:
 
 - Artykul 1 Konstytucji: RODO-safe by default. Skill pracuje na materiale ktory uzytkownik EXPLICIT wskazuje. Brak telemetrii, brak cloud sync.
 - Integracje z M365 / SharePoint sa OPCJONALNE i wymagaja zgody uzytkownika z OSTRZEZENIEM o transferze.
-- Companion stack: [matematic-stack-zero-cloud](https://matematic.co) (Cline + noScribe + DocuSeal + lokalny RAG) dla kancelarii ktore chca pelne self-host.
+- Companion stack: stack zero-cloud MateMatic (zero-cloud RODO-safe self-hosted) (Cline + noScribe + DocuSeal + lokalny RAG) dla kancelarii ktore chca pelne self-host.
 - Roadmap: lokalny model przez Ollama (Llama 3.1 / Qwen 3) jako alternatywa dla Claude API w fazie 3.
 
 ## 4. Jurysdykcja - rodzaje spraw
