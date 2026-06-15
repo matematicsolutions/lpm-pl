@@ -52,7 +52,7 @@ Apache 2.0 - patrz [LICENSE](LICENSE). Mozesz wziac, zmienic, sprzedawac wdrozen
 
 - Pattern architektoniczny (email-first input, output do folderu sprawy, judgment calls embedded, composability) - cherry-pick z [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) (Apache 2.0).
 - Tresc skilli (judgment calls, RAG framework, escalation triage) - przepisana pod polski model wspolpracy kancelarii z klientem. NIE jest to tlumaczenie 1:1.
-- Brand i utrzymanie: [MateMatic](https://matematic.co) - wspieramy polskie kancelarie w adopcji AI z poszanowaniem tajemnicy zawodowej.
+- Brand i utrzymanie: [MateMatic](https://matematicsolutions.com) - wspieramy polskie kancelarie w adopcji AI z poszanowaniem tajemnicy zawodowej.
 
 ## Status
 
