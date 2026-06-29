@@ -1,7 +1,7 @@
 ---
 name: scope-change-controller-pl
 version: 0.1.0
-description: Wykrywa scope creep w korespondencji z klientem polskiej kancelarii i klasyfikuje nowe zadania jako (a) miesci sie w pierwotnej ofercie/umowie, (b) jest poza zakresem - wymaga wniosku o rozszerzenie, (c) niejasne - wymaga interpretacji prawnika. Konsumuje pierwotna oferte/umowe + biezacy watek mailowy z klientem. Produkuje albo .docx "Wniosek o rozszerzenie zakresu sprawy" do wyslania klientowi albo notatke wewnetrzna "Mieści sie w pierwotnym zakresie" dla wspolnika prowadzacego. Polskie realia: stawki godzinowe / ryczalt / success fee bez AFA. Uzywaj gdy uzytkownik mowi "klient prosi o X poza zakresem?", "scope creep w sprawie [Y]", "wniosek o rozszerzenie [matter]", "czy to bylo w ofercie", "zmiana zakresu [X]". NIE uzywaj do oceny nowej sprawy (od tego matter-intake-scoping w fazie 3), do raportu finansowego (billing-cycle-manager w fazie 3). Czyta od status-report-drafter-pl (kontekst sprawy z poprzednich raportow), pisze do folderu sprawy + aktualizuje [Sprawa]_LPM_Memory.md (historia scope changes).
+description: Wykrywa scope creep w korespondencji z klientem polskiej kancelarii i klasyfikuje nowe zadania jako (a) miesci sie w pierwotnej ofercie/umowie, (b) jest poza zakresem - wymaga wniosku o rozszerzenie, (c) niejasne - wymaga interpretacji prawnika. Konsumuje pierwotna oferte/umowe + biezacy watek mailowy z klientem. Produkuje albo .docx "Wniosek o rozszerzenie zakresu sprawy" do wyslania klientowi albo notatke wewnetrzna "Mieści sie w pierwotnym zakresie" dla wspolnika prowadzacego. Polskie realia - stawki godzinowe / ryczalt / success fee bez AFA. Uzywaj gdy uzytkownik mowi "klient prosi o X poza zakresem?", "scope creep w sprawie [Y]", "wniosek o rozszerzenie [matter]", "czy to bylo w ofercie", "zmiana zakresu [X]". NIE uzywaj do oceny nowej sprawy (od tego matter-intake-scoping w fazie 3), do raportu finansowego (billing-cycle-manager w fazie 3). Czyta od status-report-drafter-pl (kontekst sprawy z poprzednich raportow), pisze do folderu sprawy + aktualizuje [Sprawa]_LPM_Memory.md (historia scope changes).
 ---
 
 # Scope Change Controller (PL)
@@ -231,4 +231,4 @@ Skill jest ASYSTENTEM. Decyzja o wyslaniu - tylko prawnik.
 
 ## Dziennik szlifu
 
-- **2026-05-21** v0.1.0 - pierwsza wersja. Skill #2 z MVP lpm-pl. Trzy klasy zadania (w zakresie / poza / niejasne), trzy outputy (notatka / wniosek / decyzja). Polskie realia: art. 16 KEA, konflikt interesow, brak AFA. Cross-skill z status-report-drafter-pl (kontekst sprawy) i risk-and-issues-manager-pl (zmiany scope -> ryzyka).
+- **2026-05-21** v0.1.0 - pierwsza wersja. Skill #2 z MVP lpm-pl. Trzy klasy zadania (w zakresie / poza / niejasne), trzy outputy (notatka / wniosek / decyzja). Polskie realia - art. 16 KEA, konflikt interesow, brak AFA. Cross-skill z status-report-drafter-pl (kontekst sprawy) i risk-and-issues-manager-pl (zmiany scope -> ryzyka).
