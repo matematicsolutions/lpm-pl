@@ -1,44 +1,44 @@
 # AGENTS.md - lpm-pl
 
-Plik standardu [agents.md](https://agents.md) (Linux Foundation / Agentic AI Foundation) - kanoniczne instrukcje dla agentow AI pracujacych z tym repozytorium. Czytany natywnie przez Cursor, Codex (OpenAI), Jules (Google), Devin / Windsurf, Aider, Amp, Factory, GitHub Copilot.
+Standard file [agents.md](https://agents.md) (Linux Foundation / Agentic AI Foundation) - canonical instructions for AI agents working with this repository. Read natively by Cursor, Codex (OpenAI), Jules (Google), Devin / Windsurf, Aider, Amp, Factory, GitHub Copilot.
 
-## Cel projektu
+## Project goal
 
-`lpm-pl` to otwarty zestaw **skilli AI do zarzadzania portfelem spraw w polskiej kancelarii** (Legal Project Management). Cherry-pick wzorca [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) (Apache 2.0) przepisany pod polskie realia: stawki godzinowe i ryczalt zamiast AFA, integracja z LEX Kancelaria / Mecenas IT / Comarch ERP, output `.docx` z naglowkiem kancelarii.
+`lpm-pl` is an open set of **AI skills for managing a case portfolio in a Polish law firm** (Legal Project Management). A cherry-pick of the [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) (Apache 2.0) pattern, rewritten for Polish conditions: hourly rates and flat fee ("ryczalt", flat-fee billing) instead of AFA, integration with LEX Kancelaria / Mecenas IT / Comarch ERP, `.docx` output with the firm's letterhead.
 
-**To nie jest [Patron](https://github.com/matematicsolutions/patron).** Patron pracuje na sprawie (research, drafting, RAG po aktach). `lpm-pl` pracuje nad portfelem (status raporty, scope, ryzyka, budzet). Dwa rozne narzedzia dla dwoch roznych ludzi.
+**This is not [Patron](https://github.com/matematicsolutions/patron).** Patron works on the case (research, drafting, RAG over case files). `lpm-pl` works on the portfolio (status reports, scope, risks, budget). Two different tools for two different people.
 
-## Kontekst MateMatic (TWARDE OGRANICZENIA)
+## MateMatic context (HARD CONSTRAINTS)
 
-Repo prowadzi [MateMatic Solutions](https://matematicsolutions.com). Skille dotyczy:
+The repo is run by [MateMatic Solutions](https://matematicsolutions.com). The skills concern:
 
-- **Tajemnica zawodowa** (PoA art. 6, URP art. 3) - skill nie wysyla aktow sprawy do chmury bez decyzji uzytkownika. Email-first input zaklada ze dane przeszly juz przez akceptacje uzytkownika do schowka.
-- **RODO** - skill operuje na danych ktore juz sa lokalnie, nie zaciaga z zewnatrz.
-- **Bez nazywania firm** ([CONSTITUTION.md](./CONSTITUTION.md) zasada 7) - skill nigdy nie wstawia "Skadden powiedzial" ani "stawka XYZ" - mowi "wspolnik zarzadzajacy", "dzial rozlicen", "potwierdz w polityce kancelarii".
+- **Professional secrecy** ("tajemnica zawodowa", attorney-client privilege; PoA art. 6, URP art. 3) - the skill does not send case files to the cloud without the user's decision. Email-first input assumes the data has already passed through the user's acceptance into the clipboard.
+- **RODO** (Polish GDPR) - the skill operates on data that is already local, it does not pull from outside.
+- **No naming firms** ([CONSTITUTION.md](./CONSTITUTION.md) rule 7) - the skill never inserts "Skadden said" or "rate XYZ" - it says "managing partner", "billing department", "confirm in the firm's policy".
 
-## Struktura repo
+## Repo structure
 
 ```
 skills/
-  status-report-drafter-pl/    - cotygodniowy/comiesieczny status raport sprawy
-  scope-change-controller-pl/  - wykrywanie scope creep w korespondencji
-  risk-and-issues-manager-pl/  - rejestr RAID (Ryzyka/Zalozenia/Problemy/Decyzje)
-examples/                      - przyklady wejscia/wyjscia
-docs/                          - dokumentacja designu
-CONSTITUTION.md                - 7 zasad pod ktorymi piszemy skille
-SPEC.md                        - specyfikacja techniczna v0.2.0
-CHANGELOG.md                   - historia wersji
+  status-report-drafter-pl/    - weekly/monthly case status report
+  scope-change-controller-pl/  - scope creep detection in correspondence
+  risk-and-issues-manager-pl/  - RAID register (Risks/Assumptions/Issues/Decisions)
+examples/                      - input/output examples
+docs/                          - design documentation
+CONSTITUTION.md                - 7 rules under which we write skills
+SPEC.md                        - technical specification v0.2.0
+CHANGELOG.md                   - version history
 ```
 
-Skille sa **composable**: scope-change-controller karmi risk-and-issues-manager (zmiana scope = nowe ryzyko), risk-and-issues-manager sygnalizuje status-report-drafter (RAG sprawy moze sie zmienic).
+The skills are **composable**: scope-change-controller feeds risk-and-issues-manager (a scope change = a new risk), risk-and-issues-manager signals status-report-drafter (the case RAG may change).
 
-**Composability z [matematic-contract-review-pl](https://github.com/matematicsolutions/matematic-contract-review-pl)**: jezeli skill contract-review-pl zwroci czerwone flagi w portfelu umow klienta (np. NDA bez wylaczen, prawo USA w kontrakcie dostawczym), risk-and-issues-manager-pl moze je przejac jako nowe ryzyka sprawy w rejestrze RAID. Dwa skille ortogonalne tematycznie (portfolio spraw vs portfolio umow), composable workflow.
+**Composability with [matematic-contract-review-pl](https://github.com/matematicsolutions/matematic-contract-review-pl)**: if the contract-review-pl skill returns red flags in a client's contract portfolio (e.g. an NDA without carve-outs, US law in a supply contract), risk-and-issues-manager-pl can adopt them as new case risks in the RAID register. Two skills orthogonal by topic (case portfolio vs contract portfolio), composable workflow.
 
-## Build i test
+## Build and test
 
-Repo nie ma kompilacji - to skille Markdown dla Claude Code i kompatybilnych. "Testem" jest przepuszczenie skill przez **zanonimizowana sprawe testowa** z [examples/](./examples/) i wizualna walidacja outputu `.docx`.
+The repo has no compilation step - these are Markdown skills for Claude Code and compatible tools. The "test" is running the skill on an **anonymized test case** from [examples/](./examples/) and visually validating the `.docx` output.
 
-Instalacja lokalna (Claude Code):
+Local install (Claude Code):
 
 ```bash
 cd ~/.claude/skills/
@@ -48,42 +48,42 @@ ln -s lpm-pl/skills/scope-change-controller-pl scope-change-controller-pl
 ln -s lpm-pl/skills/risk-and-issues-manager-pl risk-and-issues-manager-pl
 ```
 
-Na Windows zamiast symlinkow - kopia folderu `skills/<nazwa>/` do `~/.claude/skills/`.
+On Windows, instead of symlinks - copy the `skills/<name>/` folder to `~/.claude/skills/`.
 
-## Zasady pisania skilli
+## Skill-writing rules
 
-- **Email-first input** - kopiujesz watek z Outlooka, skill wyciaga signals. Nie zakladaj API.
-- **Output `.docx` z brand szablonem kancelarii** - status raport ma byc gotowy do wyslania, nie do przepisywania.
-- **Kazda akcja ma date** - "skontaktuj sie z X" nie istnieje, istnieje "do piatku 28.02, jezeli brak odpowiedzi - eskalacja w poniedzialek 3.03".
-- **RAG framework** - Czerwony / Bursztynowy / Zielony. Triage konsekwentny we wszystkich 3 skillach.
-- **Judgment calls embedded** - skill rozumie kiedy "wszystko gra" znaczy "nic sie nie dzieje", kiedy aktywnosc nie jest postepem, kiedy luka jest istotniejsza niz update.
-- **Bez polskich znakow w commit messages**.
+- **Email-first input** - you copy a thread from Outlook, the skill extracts signals. Do not assume an API.
+- **`.docx` output with the firm's brand template** - the status report must be ready to send, not to rewrite.
+- **Every action has a date** - "contact X" does not exist, "by Friday 28.02, if no reply - escalation on Monday 3.03" does.
+- **RAG framework** - Red / Amber / Green. Consistent triage across all 3 skills.
+- **Judgment calls embedded** - the skill understands when "all good" means "nothing is happening", when activity is not progress, when a gap matters more than an update.
+- **No Polish characters in commit messages**.
 
-## Czego NIE robic (twarde reguly)
+## What NOT to do (hard rules)
 
-- **NIE wprowadzaj AFA / phase-based fees** do skilli - w Polsce art. 16 KEA + brak modelu AFA = nie zmieniaj polskiego billingu pod amerykanski upstream.
-- **NIE nazywaj firm ani konkretnych stawek** w outputach skilla.
-- **NIE wysylaj danych do chmury** w opisach przykladow ([CONSTITUTION.md](./CONSTITUTION.md) zasada 1).
-- **NIE commituj danych prawdziwej sprawy** w `examples/` - tylko zanonimizowane lub syntetyczne.
+- **DO NOT introduce AFA / phase-based fees** into the skills - in Poland art. 16 KEA ("Kodeks Etyki Adwokackiej", Code of Advocate Ethics) + the absence of an AFA model = do not change Polish billing to match the American upstream.
+- **DO NOT name firms or specific rates** in skill outputs.
+- **DO NOT send data to the cloud** in example descriptions ([CONSTITUTION.md](./CONSTITUTION.md) rule 1).
+- **DO NOT commit real case data** in `examples/` - only anonymized or synthetic.
 
-## Zrodla prawdy (kolejnosc czytania)
+## Sources of truth (reading order)
 
-1. [README.md](./README.md) - opis dla ludzi
-2. [CONSTITUTION.md](./CONSTITUTION.md) - 7 zasad konstytucyjnych skilli
-3. [SPEC.md](./SPEC.md) - specyfikacja techniczna v0.2.0-alpha
+1. [README.md](./README.md) - description for humans
+2. [CONSTITUTION.md](./CONSTITUTION.md) - 7 constitutional rules for the skills
+3. [SPEC.md](./SPEC.md) - technical specification v0.2.0-alpha
 4. [CHANGELOG.md](./CHANGELOG.md) - 0.1.0 -> 0.2.0
-5. [examples/](./examples/) - prawdziwe pelne przejscia skilla
+5. [examples/](./examples/) - real full skill run-throughs
 
-## Kompatybilnosc agentow
+## Agent compatibility
 
-Ten plik (AGENTS.md) jest standardem [agents.md](https://agents.md). Skille sa pisane pod Claude Code, ale pattern (email-first input, RAG triage, `.docx` output) jest agent-agnostic - mozesz przepisac pod Cursor / Codex / Devin.
+This file (AGENTS.md) is the [agents.md](https://agents.md) standard. The skills are written for Claude Code, but the pattern (email-first input, RAG triage, `.docx` output) is agent-agnostic - you can rewrite it for Cursor / Codex / Devin.
 
-Dla Claude Code dodatkowo istnieje plik [CLAUDE.md](./CLAUDE.md) importujacy ten dokument.
+For Claude Code there is additionally a [CLAUDE.md](./CLAUDE.md) file importing this document.
 
-## Licencja i atrybucja
+## License and attribution
 
-- **Apache 2.0** - patrz [LICENSE](./LICENSE).
-- Pattern architektoniczny: cherry-pick z [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) (Apache 2.0).
-- Tresc skilli: przepisana pod polski model wspolpracy kancelarii z klientem. NIE jest to tlumaczenie 1:1.
+- **Apache 2.0** - see [LICENSE](./LICENSE).
+- Architectural pattern: cherry-pick from [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) (Apache 2.0).
+- Skill content: rewritten for the Polish model of firm-client cooperation. This is NOT a 1:1 translation.
 
-Cytowanie: *MateMatic Solutions (2026), lpm-pl - skille zarzadzania projektami prawnymi dla polskich kancelarii, https://github.com/matematicsolutions/lpm-pl, Apache 2.0.*
+Citation: *MateMatic Solutions (2026), lpm-pl - legal project management skills for Polish law firms, https://github.com/matematicsolutions/lpm-pl, Apache 2.0.*

@@ -1,101 +1,101 @@
-# Konstytucja projektu lpm-pl
+# lpm-pl project Constitution
 
-**Wersja**: 1.0.0
-**Data przyjecia**: 2026-05-21
-**Status**: ratyfikowana przez Wieslawa Mazura (MateMatic)
+**Version**: 1.0.0
+**Date adopted**: 2026-05-21
+**Status**: ratified by Wieslaw Mazur (MateMatic)
 
-Konstytucja jest nadrzedna wobec specyfikacji konkretnych skilli. Jezeli SKILL.md koliduje z artykulem Konstytucji - Konstytucja wygrywa. Zmiana Konstytucji wymaga bumpa SEMVER i wpisu w CHANGELOG.md.
-
----
-
-## Misja
-
-Daj polskiej kancelarii narzedzie ktore zdejmuje z partnera zarzadzajacego cotygodniowy rytual "skladania raportow z 40 spraw" bez wysylania danych klienta do chmury i bez kazdego partnera musiacego nauczyc sie nowego SaaS.
-
-## Artykul 1 - RODO-safe by default
-
-Kazdy skill MUSI dzialac na materiale ktory uzytkownik wkleja lub wskazuje lokalnie. Skill NIE WYSYLA aktow sprawy, korespondencji z klientem ani danych osobowych do zadnego zewnetrznego API poza modelem LLM ktorego uzytkownik uzywa swiadomie (Claude, lokalny model przez Ollama, etc.).
-
-Skill NIE zapisuje danych klienta poza folderem sprawy wskazanym przez uzytkownika. Brak telemetrii, brak "cloud sync", brak analytics.
-
-Domyslny tryb: offline-compatible. Integracje z M365 / SharePoint / Outlook sa OPCJONALNE i wymagaja swiadomej zgody uzytkownika z ostrzezeniem o transferze danych.
-
-## Artykul 2 - Polskie realia billingu
-
-Skille NIE zakladaja modeli fee przyjetych w common-law (AFA - Alternative Fee Arrangements, phase-based budgets, retainer-pluss-success). Domyslne modele:
-
-- **Stawka godzinowa** (najczestszy) - skill liczy budzet jako stawka x prognoza godzin per faza.
-- **Ryczalt** (cena za sprawe lub za etap) - skill liczy spalanie ryczaltu vs zaawansowanie pracy.
-- **Success fee** - z ograniczeniami ustawowymi (art. 16 Kodeksu Etyki Adwokackiej; analogicznie KEZRP dla radcow). Skill NIE proponuje pactum de quota litis bez ostrzezenia o limitach.
-- **Hybryda** (stawka + success cap) - najczestszy w sprawach gospodarczych.
-
-Skille NIE wstawiaja konkretnych stawek ani nazw firm konkurencyjnych. Wstawiaja "stawka kancelarii", "polityka rozlicen", "wspolnik zarzadzajacy".
-
-## Artykul 3 - Output do .docx z brand szablonem kancelarii
-
-Status raporty, wnioski o zmiane scope, rejestry ryzyk - wszystko produkowane jako **.docx** z naglowkiem kancelarii (template definiowany per wdrozenie w `templates/`).
-
-Skill NIE pyta "wolisz markdown czy Word". Standard branzowy: kancelaria wysyla klientowi .docx albo PDF wygenerowane z .docx. Markdown wewnatrz okna czatu to dowod e niczego nie zrobiles.
-
-Wyjatek tylko gdy uzytkownik EXPLICIT prosi "daj mi bullety w czacie" / "wklej tu". Wczesniejsze preferencje uzytkownika do markdown w innych skillach NIE sa wystarczajacym uzasadnieniem.
-
-## Artykul 4 - Email-first input, format-agnostic
-
-Domyslnie skill przyjmuje wklejone watki z Outlooka / Gmail / Teams. Akceptuje takze: notatki ze spotkan, surowe transkrypcje (z LEX, Otter, Whisper), zalaczone .docx/.xlsx/.pdf. Nie zaklada konkretnego workflow zarzadzania mailami - kancelaria moze uzywac Comarch IBARD, Outlook, Apple Mail, wszystkiego.
-
-## Artykul 5 - Judgment calls embedded, nie tylko sumaryzacja
-
-Skill NIE jest sumaryzatorem. Skill rozpoznaje:
-
-- **Postep vs aktywnosc**: "30 maili w tym tygodniu" to aktywnosc. "Trzy postanowienia uchylone, dwie ugody podpisane" to postep. Aktywnosc bez postepu = sygnal eskalacji.
-- **Cisza jako sygnal**: brak update'u to status, nie luka. "Od 3 tyg brak odpowiedzi z sadu" jest raportowalne.
-- **Termin obowiazkowy dla kazdej akcji**: "skontaktuj sie z bieglym" nie istnieje. "Do piatku 28.02; jezeli brak - eskalacja w poniedzialek 3.03" istnieje.
-- **RAG forward-looking**: kolor ocenia ryzyko ze sprawa nie dowiezie milestone'a w nastepnych 2 tyg, nie czy w ostatnich 2 tyg bylo duzo pracy.
-- **Eskalacja triage**: zespol-rozwiazuje / wspolnik-decyduje / klient-musi-wiedziec. Test: "jezeli sprawa pojdzie zle a wspolnik/klient nie wiedzial - czy to nasza wina raportowa?".
-
-## Artykul 6 - Composability ponad kompletnoscia
-
-Lepiej miec 3 dobrze skomponowane skille (status czyta z risk register, scope feeduje status) niz 16 odseparowanych. Kazdy nowy skill MUSI deklarowac:
-
-- **Czyta od**: jakie skille / pliki konsumuje.
-- **Pisze do**: jakie skille / pliki produkuje.
-- **Handoff points**: gdzie dotyka innych skilli.
-
-Brak silosow. Brak "robie wszystko sam".
-
-## Artykul 7 - Atrybucja patternu i niezaleznosc tresci
-
-Pattern architektoniczny (email-first input, output do folderu sprawy, judgment calls embedded, composability, RAG framework, escalation triage) jest cherry-pick z [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) na licencji Apache 2.0 snapshot. Atrybucja w README.md i kazdym SKILL.md.
-
-Tresc skilli (konkretne judgment calls, terminologia, modele billingu, integracje, polskie aspekty prawne) jest pisana od zera pod polski model wspolpracy kancelarii z klientem. NIE jest to tlumaczenie 1:1 - jest to przepisanie.
-
-Upstream zapowiada przejscie na AGPL-3.0 w przyszlych wersjach. lpm-pl pozostaje na Apache 2.0 snapshot z dnia cherry-picku (2026-05-21). Pozniejsze zmiany upstream NIE sa automatycznie wciagane.
+The Constitution overrides the specifications of individual skills. If a SKILL.md conflicts with a Constitution article - the Constitution wins. Changing the Constitution requires a SEMVER bump and an entry in CHANGELOG.md.
 
 ---
 
-## Bramki MateMatic (sprawdzane przed kazdym mergem)
+## Mission
 
-1. **Licencja**: zgodnie z Art. 7. Nowe zalezności tylko permissive (MIT/Apache/BSD/CC BY).
-2. **Anty-OS**: zero ToS bypass, zero scraping uslug niemajacych zgody, zero "ukrytego" transferu danych klienta.
-3. **Jakosc**: kazdy skill ma testowy przypadek na zanonimizowanej sprawie + przejscie wewnetrznego pipeline QA maintainerow (korekta PL, czytelnosc, brak slop-wzorcow).
-4. **Strategia**: skill rozwiazuje realny bol polskiej kancelarii. Jezeli wymaga 3 SaaS subskrypcji za 400 USD/mc - odrzucamy.
+Give a Polish law firm a tool that removes from the managing partner the weekly ritual of "assembling reports from 40 cases" without sending client data to the cloud and without every partner having to learn a new SaaS.
+
+## Article 1 - RODO-safe by default
+
+Every skill MUST work on material that the user pastes or points to locally. The skill DOES NOT SEND case files, client correspondence, or personal data to any external API other than the LLM the user deliberately uses (Claude, a local model via Ollama, etc.).
+
+The skill DOES NOT save client data outside the case folder indicated by the user. No telemetry, no "cloud sync", no analytics.
+
+Default mode: offline-compatible. Integrations with M365 / SharePoint / Outlook are OPTIONAL and require the user's deliberate consent with a warning about data transfer.
+
+## Article 2 - Polish billing conditions
+
+The skills DO NOT assume fee models adopted in common-law jurisdictions (AFA - Alternative Fee Arrangements, phase-based budgets, retainer-plus-success). Default models:
+
+- **Hourly rate** (most common) - the skill computes the budget as rate x forecast hours per phase.
+- **Flat fee** ("ryczalt", price per case or per stage) - the skill computes flat-fee burn vs work progress.
+- **Success fee** - with statutory limits (art. 16 of the Code of Advocate Ethics ("Kodeks Etyki Adwokackiej", KEA); analogously KEZRP for legal counsels). The skill DOES NOT propose pactum de quota litis without a warning about the limits.
+- **Hybrid** (rate + success cap) - most common in commercial cases.
+
+The skills DO NOT insert specific rates or names of competing firms. They insert "firm rate", "billing policy", "managing partner".
+
+## Article 3 - Output to .docx with the firm's brand template
+
+Status reports, scope-change requests, risk registers - all produced as **.docx** with the firm's letterhead (the template is defined per deployment in `templates/`).
+
+The skill DOES NOT ask "do you prefer markdown or Word". Industry standard: the firm sends the client a .docx or a PDF generated from a .docx. Markdown inside the chat window is proof that you did nothing.
+
+Exception only when the user EXPLICITLY asks "give me bullets in the chat" / "paste it here". A user's earlier preference for markdown in other skills is NOT sufficient justification.
+
+## Article 4 - Email-first input, format-agnostic
+
+By default the skill accepts pasted threads from Outlook / Gmail / Teams. It also accepts: meeting notes, raw transcripts (from LEX, Otter, Whisper), attached .docx/.xlsx/.pdf. It does not assume a specific email-management workflow - a firm may use Comarch IBARD, Outlook, Apple Mail, anything.
+
+## Article 5 - Judgment calls embedded, not just summarization
+
+The skill is NOT a summarizer. The skill recognizes:
+
+- **Progress vs activity**: "30 emails this week" is activity. "Three rulings overturned, two settlements signed" is progress. Activity without progress = an escalation signal.
+- **Silence as a signal**: a lack of updates is a status, not a gap. "No reply from the court for 3 weeks" is reportable.
+- **A mandatory deadline for every action**: "contact the expert" does not exist. "By Friday 28.02; if no reply - escalation on Monday 3.03" does.
+- **Forward-looking RAG**: the color assesses the risk that the case will not deliver a milestone in the next 2 weeks, not whether there was a lot of work in the last 2 weeks.
+- **Escalation triage**: team-resolves / partner-decides / client-must-know. Test: "if the case goes wrong and the partner/client did not know - is that our reporting fault?".
+
+## Article 6 - Composability over completeness
+
+Better to have 3 well-composed skills (status reads from the risk register, scope feeds status) than 16 separated ones. Every new skill MUST declare:
+
+- **Reads from**: which skills / files it consumes.
+- **Writes to**: which skills / files it produces.
+- **Handoff points**: where it touches other skills.
+
+No silos. No "I do everything myself".
+
+## Article 7 - Pattern attribution and content independence
+
+The architectural pattern (email-first input, output to the case folder, judgment calls embedded, composability, RAG framework, escalation triage) is a cherry-pick from [legalopsconsulting/lpm-skills](https://github.com/legalopsconsulting/lpm-skills) under the Apache 2.0 license snapshot. Attribution in README.md and every SKILL.md.
+
+The skill content (specific judgment calls, terminology, billing models, integrations, Polish legal aspects) is written from scratch for the Polish model of firm-client cooperation. This is NOT a 1:1 translation - it is a rewrite.
+
+The upstream announces a move to AGPL-3.0 in future versions. lpm-pl stays on the Apache 2.0 snapshot from the cherry-pick date (2026-05-21). Later upstream changes are NOT automatically pulled in.
+
+---
+
+## MateMatic gates (checked before every merge)
+
+1. **License**: per Art. 7. New dependencies only permissive (MIT/Apache/BSD/CC BY).
+2. **Anti-OS**: zero ToS bypass, zero scraping of services without consent, zero "hidden" transfer of client data.
+3. **Quality**: every skill has a test case on an anonymized case + passes the maintainers' internal QA pipeline (PL proofreading, readability, no slop patterns).
+4. **Strategy**: the skill solves a real pain of a Polish law firm. If it requires 3 SaaS subscriptions at 400 USD/month - we reject it.
 
 ## Roles
 
-- **Wlasciciel produktu**: Wieslaw Mazur (MateMatic) - decyzje strategiczne, ratyfikacja Konstytucji.
-- **Maintainer**: zespol MateMatic - PR review, release, dokumentacja.
-- **Reviewer tresci**: wewnetrzny pipeline QA maintainerow MateMatic (rygor zarzutow + anty-slop dla polszczyzny) przed kazdym mergem.
-- **Walidator** prawny: licencjonowany prawnik wskazany przez klienta - kazda kancelaria ratyfikuje skill przed uzyciem produkcyjnym.
+- **Product owner**: Wieslaw Mazur (MateMatic) - strategic decisions, ratification of the Constitution.
+- **Maintainer**: the MateMatic team - PR review, release, documentation.
+- **Content reviewer**: MateMatic maintainers' internal QA pipeline (charge rigor + anti-slop for Polish) before every merge.
+- **Legal validator**: a licensed lawyer designated by the client - every firm ratifies the skill before production use.
 
-## Antygoals (czego NIE robimy)
+## Antigoals (what we do NOT do)
 
-- NIE budujemy SaaS - to skille lokalne, kancelaria je instaluje u siebie.
-- NIE konkurujemy z LEX/LegalBase/Mecenas IT - jestesmy warstwa AI **nad** tymi systemami, nie zamiast.
-- NIE bierzemy odpowiedzialnosci prawnej za output - skill to draft do akceptacji prawnika.
-- NIE robimy time-trackera ani billing-systemu - skill konsumuje dane z istniejacego systemu (Mecenas/Kancelaria/Excel), nie je generuje.
+- We do NOT build a SaaS - these are local skills, the firm installs them on its own machines.
+- We do NOT compete with LEX/LegalBase/Mecenas IT - we are the AI layer **on top of** those systems, not instead of them.
+- We do NOT take legal responsibility for the output - the skill is a draft for a lawyer to accept.
+- We do NOT build a time-tracker or a billing system - the skill consumes data from an existing system (Mecenas/Kancelaria/Excel), it does not generate it.
 
 ---
 
-## Dziennik szlifu
+## Refinement log
 
-- **2026-05-21** - Konstytucja v1.0.0 ratyfikowana. Cherry-pick patternu z lpm-skills Apache 2.0 snapshot. MVP: 3 skille (status/scope/risk), na start tylko status-report-drafter-pl.
+- **2026-05-21** - Constitution v1.0.0 ratified. Cherry-pick of the pattern from lpm-skills Apache 2.0 snapshot. MVP: 3 skills (status/scope/risk), starting only with status-report-drafter-pl.
